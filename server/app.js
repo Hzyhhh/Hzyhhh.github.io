@@ -38,7 +38,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(80, function(){
+app.listen(808, function(){
   console.log('服务器在80端口开启！')
 })
 
