@@ -39,7 +39,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(808, function(){
-  console.log('服务器在80端口开启！')
+  console.log('服务器在808端口开启！')
 })
 
 module.exports = app;
