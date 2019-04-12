@@ -20,5 +20,16 @@ router.get('/getUuid', function (req, res) {
     else
       res.send(data)
   })
-})
+});
+
+router.get('/getUser', function(req, res) {
+  let sql = `select * from beacon_user;`;
+
+  conn.query(sql, (err, data)=>{
+    if(err)
+      throw err;
+    else
+      res.send(data)
+  })
+});
 module.exports = router;
