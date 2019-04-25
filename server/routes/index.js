@@ -23,7 +23,7 @@ router.get('/getUuid', function (req, res) {
   })
 });
 
-router.post('/postLocated', function(req, res){
+router.post('/WeChat/postLocated', function(req, res){
   console.log(req.body)
   let sql = `insert into `
 })
