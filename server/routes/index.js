@@ -43,23 +43,27 @@ router.post('/WeChat/postLocated', function (req, res) {
   })
 })
 
-router.post('/WeChat/clockIn', (req, res)=>{
-  console.log(req.body[0])
+router.post('/WeChat/clockIn', (req, res) => {
+  console.log(req.body.uuidArr)
   let mydate = new Date();
   console.log(mydate)
-  let uuidArr = req.body[0].uuidArr;
+  let uuidArr = req.body.uuidArr;
   let sql1 = `select clockin from beacon_devices where beacon_uuid = '${uuidArr}';`
-  conn.query(sql1, (err, data)=>{
-    console.log(data)
-    let sql = `update beacon_upload set clockin = ${data++} where beacon_uuid = '${uuidArr}';`
-    conn.query(sql, (err, data)=>{
-      if (err)
+  conn.query(sql1, (err, data) => {
+    console.log(data[0].clockin)
+    if (err)
+      throw err
+    else {
+      let sql = `update beacon_devices set clockin = ${parseInt(data[0].clockin) + 1} where beacon_uuid = '${uuidArr}';`
+      conn.query(sql, (err, data) => {
+        if (err)
           throw err
         else
           res.send("success!")
-    })
+      })
+    }
   })
-  
+
 })
 
 router.get('/WeChat/getLocation', (req, res) => {
